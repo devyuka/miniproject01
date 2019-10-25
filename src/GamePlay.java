@@ -25,13 +25,15 @@ public class GamePlay {
                 return;
             }
 
-            // Break if all the underscores are replaced with correct letters.
-            if(!(question.getUnderscores().contains("_"))){break;}
+            // Return (You Win) if all the underscores are replaced with correct letters.
+            if(!(question.getUnderscores().contains("_"))){
+                System.out.println("You win!\nYou have guessed '" + question.getCityName() + "' correctly.");
+                return;
+            }
 
             System.out.println("You are guessing: " + question.getUnderscores());
             System.out.println("You have guessed (" + question.getGuessCount() + ") wrong letters: " + question.getWrongLetters());
 
         }
-        System.out.println("You win!\nYou have guessed '" + question.getCityName() + "' correctly.");
     }
 }
