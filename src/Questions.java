@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -12,6 +13,7 @@ public class Questions {
     private String underscores;
     private StringBuilder wrongLetters = new StringBuilder();
     private int guessCount;
+    public static final int MAX_GUESS_COUNT = 10;
 
     Questions(){
         fileToList();
@@ -22,7 +24,7 @@ public class Questions {
      * @return String city name
      */
     public String pickCity(){
-        int randomNum = (int)(Math.random() * cityNamesCount);
+        int randomNum = (int)(Math.random() * cityNamesCount) + 1;
         cityName = cityNames.get(randomNum);
         // Delete the below code as it shows the answer when the game starts.
         System.out.println(cityName);
@@ -72,8 +74,13 @@ public class Questions {
         try (Stream<String> lines = Files.lines(Paths.get("cities.txt"))) {
             cityNames = lines.collect(Collectors.toList());
             cityNamesCount = cityNames.size();
-        } catch (IOException e) {
-            e.printStackTrace();
+        }catch (FileNotFoundException e) {
+            //e.printStackTrace();
+            System.out.println("File Not Found");
+        }
+        catch (IOException e) {
+            //e.printStackTrace();
+            System.out.println("Unable To Read File");
         }
     }
 

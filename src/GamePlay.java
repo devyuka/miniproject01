@@ -19,7 +19,7 @@ public class GamePlay {
             }
 
             // Return (Game Over) if the guessCount reaches 10.
-            if(question.getGuessCount() >= 10){
+            if(question.getGuessCount() >= question.MAX_GUESS_COUNT){
                 System.out.println("You have guessed (" + question.getGuessCount() + ") wrong letters: " + question.getWrongLetters());
                 System.out.println("You lose!\nThe correct word was '" + question.getCityName() + "'!");
                 return;
